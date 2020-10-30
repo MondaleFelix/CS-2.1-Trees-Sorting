@@ -7,6 +7,15 @@ def is_sorted(items):
     TODO: Memory usage: ??? Why and under what conditions?"""
     # TODO: Check that all adjacent items are in order, return early if so
 
+    counter = 0
+    while counter is not len(items):
+        if items[counter] < items[counter]:
+            counter += 1
+        else:
+            return False
+
+    return True
+
 
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
