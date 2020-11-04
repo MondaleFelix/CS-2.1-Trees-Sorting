@@ -32,7 +32,7 @@ def bubble_sort(items):
     repeating until all items are in sorted order.
     TODO: Running time: ??? Why and under what conditions?
     
-    # O(n^2) If all elements are unsorted
+    # O(n^n) If all elements are unsorted
 
     TODO: Memory usage: ??? Why and under what conditions?"""
     # O(1) No extra mememory is being created
@@ -57,9 +57,12 @@ def selection_sort(items):
     unsorted item, and repeating until all items are in sorted order.
     TODO: Running time: ??? Why and under what conditions?
 
-    # O(n^2) If all elements are unsorted
+    # O(n^N) If all elements are unsorted
 
     TODO: Memory usage: ??? Why and under what conditions?"""
+
+    # O(n^2)
+
     # TODO: Repeat until all items are in sorted order
     # TODO: Find minimum item in unsorted items
     # TODO: Swap it with first unsorted item
@@ -84,21 +87,27 @@ def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
     TODO: Running time: ??? Why and under what conditions?
+
+    O(n) If all elements are unsorted
+
     TODO: Memory usage: ??? Why and under what conditions?"""
+
+    # O(n)
+
+
     # TODO: Repeat until all items are in sorted order
     # TODO: Take first unsorted item
     # TODO: Insert it in sorted order in front of items
 
-        # Traverse through 1 to len(arr) 
+
+
     for i in range(1, len(items)): 
   
         key = items[i] 
-  
-        # Move elements of arr[0..i-1], that are 
-        # greater than key, to one position ahead 
-        # of their current position 
+       
+
         j = i-1
-        while j >= 0 and key < items[j] : 
+        while j >= 0 and key < items[j]: 
                 items[j + 1] = items[j] 
                 j -= 1
         items[j + 1] = key 
