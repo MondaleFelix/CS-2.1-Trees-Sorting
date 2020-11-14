@@ -1,5 +1,6 @@
 #!python
 
+from sorting_iterative import bubble_sort
 
 def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,
@@ -25,11 +26,11 @@ def merge(items1, items2):
     		items1_index += 1	
 
     # TODO: Append remaining items in non-empty list to new list
-    sorted_list.append(items1[items1_index:])
-    sorted_list.append(items2[items2_index:])
+    sorted_list += items1[items1_index:]
+    sorted_list += items2[items2_index:]
 
     return sorted_list
-	# print(merge([1,3,5,8],[2,3,6,10,12]))
+# print(merge([1,3,5,8],[2,3,6,10,12]))
 
 def split_sort_merge(items):
     """Sort given items by splitting list into two approximately equal halves,
@@ -37,10 +38,27 @@ def split_sort_merge(items):
     a list in sorted order.
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
+
+    # Return arr if empty or has one item
+    if len(items) == 1 or len(items) == 0:
+    	return items
+
     # TODO: Split items list into approximately equal halves
+    middle = len(items) // 2
+
+    left = items[:middle]
+    right = items[middle:]
+
     # TODO: Sort each half using any other sorting algorithm
+    bubble_sort(left)
+    bubble_sort(right)
+
     # TODO: Merge sorted halves into one list in sorted order
-    pass
+
+    sorted_list = merge(left,right)
+    return sorted_list
+
+print(split_sort_merge([1,4,7,2,4,3,8,5,2,5,3,6]))
 
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
