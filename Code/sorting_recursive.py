@@ -69,7 +69,7 @@ def merge_sort(items):
 
 	# TODO: Check if list is so small it's already sorted (base case)
 
-	if len(items) == 1:
+	if len(items) == 1 or len(items) == 0:
 		return items
 
 	# TODO: Split items list into approximately equal halves
