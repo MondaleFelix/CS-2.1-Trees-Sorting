@@ -30,7 +30,7 @@ def merge(items1, items2):
 	sorted_list += items2[items2_index:]
 
 	return sorted_list
-# print(merge([1,3,5,8],[2,3,6,10,12]))
+print(merge([5],[3]))
 
 def split_sort_merge(items):
 	"""Sort given items by splitting list into two approximately equal halves,
@@ -80,12 +80,16 @@ def merge_sort(items):
 		right = items[middle:]
 
 	# TODO: Sort each half by recursively calling merge sort
+		merge_sort(left)
+		merge_sort(right)
 	# TODO: Merge sorted halves into one list in sorted order
-		sorted_array = merge(merge_sort(left), merge_sort(right))
+		items[:] = merge(left, right)
 
-	return sorted_array
+	return items
 
-# print(merge_sort([1,4,7,2,4,3,8,5,10,5,3,6]))
+print(merge_sort([5,7,3]))
+
+
 
 
 
