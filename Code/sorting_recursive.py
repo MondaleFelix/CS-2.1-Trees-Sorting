@@ -1,6 +1,8 @@
 #!python
 
 from sorting_iterative import bubble_sort
+from random import randint
+
 
 def merge(items1, items2):
 	"""Merge given lists of items, each assumed to already be in sorted order,
@@ -87,35 +89,67 @@ def merge_sort(items):
 
 	return items
 
-print(merge_sort([5,7,3]))
 
-
-
+# Helper method to peform in place swap
+def swap(items, i, j):
+    tmp = items[i]
+    items[i] = items[j]
+    items[j] = tmp
 
 
 def partition(items, low, high):
-	"""Return index `p` after in-place partitioning given items in range
-	`[low...high]` by choosing a pivot (TODO: document your method here) from
-	that range, moving pivot into index `p`, items less than pivot into range
-	`[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
-	TODO: Running time: ??? Why and under what conditions?
-	TODO: Memory usage: ??? Why and under what conditions?"""
-	# TODO: Choose a pivot any way and document your method in docstring above
-	# TODO: Loop through all items in range [low...high]
-	# TODO: Move items less than pivot into front of range [low...p-1]
-	# TODO: Move items greater than pivot into back of range [p+1...high]
-	# TODO: Move pivot item into final position [p] and return index p
-	pass
+    """Return index `p` after in-place partitioning given items in range
+    `[low...high]` by choosing a pivot with median of 3 function from
+    that range, moving pivot into index `p`, items less than pivot into range
+    `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
+    TODO: Running time: ??? Why and under what conditions?
+    TODO: Memory usage: ??? Why and under what conditions?"""
+
+    swap(items, low, randint(low, high))
+    pivot = low
+
+    left = low + 1
+    right = high
+
+    while True:
+        # Find item greater than pivot
+        while left <= right and items[left] <= items[pivot]:
+            left += 1
+
+        # Find item less than pivot
+        while left <= right and items[right] >= items[pivot]:
+            right -= 1
+
+        # Still in bounds, swap items 
+        if left <= right:
+            swap(items, left, right)
+        else:
+            break
+
+    #Move pivot to final position
+    swap(items, right, pivot)
+    return right
 
 
 def quick_sort(items, low=None, high=None):
-	"""Sort given items in place by partitioning items in range `[low...high]`
-	around a pivot item and recursively sorting each remaining sublist range.
-	TODO: Best case running time: ??? Why and under what conditions?
-	TODO: Worst case running time: ??? Why and under what conditions?
-	TODO: Memory usage: ??? Why and under what conditions?"""
-	# TODO: Check if high and low range bounds have default values (not given)
-	# TODO: Check if list or range is so small it's already sorted (base case)
-	# TODO: Partition items in-place around a pivot and get index of pivot
-	# TODO: Sort each sublist range by recursively calling quick sort
-	pass
+    """Sort given items in place by partitioning items in range `[low...high]`
+    around a pivot item and recursively sorting each remaining sublist range.
+    TODO: Best case running time: ??? Why and under what conditions?
+    TODO: Worst case running time: ??? Why and under what conditions?
+    TODO: Memory usage: ??? Why and under what conditions?"""
+
+    # start quicksort
+    if low == None and high == None:
+        low = 0
+        high = len(items) - 1
+
+    # Base case input is too small
+    if low < high:
+        # partition items
+        pivot = partition(items, low, high)
+
+        # sort left sublist
+        quick_sort(items, low, pivot - 1)
+    
+        # sort right sublist
+        quick_sort(items, pivot + 1, high)    
