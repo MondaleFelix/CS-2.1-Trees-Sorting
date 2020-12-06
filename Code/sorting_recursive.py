@@ -32,7 +32,7 @@ def merge(items1, items2):
 	sorted_list += items2[items2_index:]
 
 	return sorted_list
-print(merge([5],[3]))
+
 
 def split_sort_merge(items):
 	"""Sort given items by splitting list into two approximately equal halves,
